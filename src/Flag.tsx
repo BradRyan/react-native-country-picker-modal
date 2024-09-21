@@ -1,16 +1,16 @@
 import React, { memo } from 'react'
-import { Emoji } from './Emoji'
-import { CountryCode } from './types'
-import { useContext } from './CountryContext'
 import { useAsync } from 'react-async-hook'
 import {
+  ActivityIndicator,
   Image,
-  StyleSheet,
   PixelRatio,
+  StyleSheet,
   Text,
   View,
-  ActivityIndicator,
 } from 'react-native'
+import { useContext } from './CountryContext'
+import { Emoji } from './Emoji'
+import { CountryCode } from './types'
 
 const styles = StyleSheet.create({
   container: {
@@ -79,8 +79,8 @@ const EmojiFlag = memo(({ countryCode, flagSize }: FlagType) => {
 
 export const Flag = ({
   countryCode,
-  withEmoji,
-  withFlagButton,
+  withEmoji = true,
+  withFlagButton = true,
   flagSize,
 }: FlagType) =>
   withFlagButton ? (
@@ -93,7 +93,4 @@ export const Flag = ({
     </View>
   ) : null
 
-Flag.defaultProps = {
-  withEmoji: true,
-  withFlagButton: true,
-}
+

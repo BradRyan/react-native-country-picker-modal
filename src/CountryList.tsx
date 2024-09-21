@@ -1,20 +1,20 @@
-import React, { useRef, memo, useState, useEffect } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import {
-  StyleSheet,
-  View,
+  Dimensions,
   FlatList,
-  ScrollView,
-  TouchableOpacity,
+  FlatListProps,
   ListRenderItemInfo,
   PixelRatio,
-  FlatListProps,
-  Dimensions,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
 } from 'react-native'
-import { useTheme } from './CountryTheme'
-import { Country, Omit } from './types'
-import { Flag } from './Flag'
 import { useContext } from './CountryContext'
 import { CountryText } from './CountryText'
+import { useTheme } from './CountryTheme'
+import { Flag } from './Flag'
+import { Country, Omit } from './types'
 
 const borderBottomWidth = 2 / PixelRatio.get()
 
@@ -94,7 +94,7 @@ const CountryItem = (props: CountryItemProps) => {
   const {
     country,
     onSelect,
-    withFlag,
+    withFlag = true,
     withEmoji,
     withCallingCode,
     withCurrency,
@@ -136,10 +136,7 @@ const CountryItem = (props: CountryItemProps) => {
     </TouchableOpacity>
   )
 }
-CountryItem.defaultProps = {
-  withFlag: true,
-  withCallingCode: false,
-}
+
 const MemoCountryItem = memo<CountryItemProps>(CountryItem)
 
 const renderItem =
@@ -257,6 +254,3 @@ export const CountryList = (props: CountryListProps) => {
   )
 }
 
-CountryList.defaultProps = {
-  filterFocus: undefined,
-}

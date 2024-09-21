@@ -1,17 +1,17 @@
-import React, { useState, useEffect, ReactNode, memo } from 'react'
+import React, { ReactNode, memo, useEffect, useState } from 'react'
 import {
-  TouchableOpacity,
-  StyleSheet,
-  View,
   StyleProp,
-  ViewStyle,
+  StyleSheet,
   TextProps,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native'
-import { CountryCode } from './types'
-import { Flag } from './Flag'
 import { useContext } from './CountryContext'
 import { CountryText } from './CountryText'
 import { useTheme } from './CountryTheme'
+import { Flag } from './Flag'
+import { CountryCode } from './types'
 
 const styles = StyleSheet.create({
   container: {
@@ -124,11 +124,11 @@ export interface FlagButtonProps {
 
 export const FlagButton = ({
   allowFontScaling,
-  withEmoji,
+  withEmoji = true,
   withCountryNameButton,
   withCallingCodeButton,
   withCurrencyButton,
-  withFlagButton,
+  withFlagButton = true,
   countryCode,
   containerButtonStyle,
   onOpen,
@@ -160,12 +160,4 @@ export const FlagButton = ({
       </View>
     </TouchableOpacity>
   )
-}
-
-FlagButton.defaultProps = {
-  withEmoji: true,
-  withCountryNameButton: false,
-  withCallingCodeButton: false,
-  withCurrencyButton: false,
-  withFlagButton: true,
 }

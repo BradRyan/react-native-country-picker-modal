@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react'
 import {
-  View,
-  StyleSheet,
   ImageSourcePropType,
-  StyleProp,
-  ViewStyle,
   ImageStyle,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
 } from 'react-native'
 import CloseButton from './CloseButton'
 
@@ -28,7 +28,7 @@ interface HeaderModalProps {
 export const HeaderModal = (props: HeaderModalProps) => {
   const {
     withFilter,
-    withCloseButton,
+    withCloseButton = true,
     closeButtonImage,
     closeButtonStyle,
     closeButtonImageStyle,
@@ -50,6 +50,4 @@ export const HeaderModal = (props: HeaderModalProps) => {
   )
 }
 
-HeaderModal.defaultProps = {
-  withCloseButton: true,
-}
+

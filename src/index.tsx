@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react'
+import { FlatListProps, ModalProps, StyleProp, ViewStyle } from 'react-native'
+import { CountryProvider, DEFAULT_COUNTRY_CONTEXT } from './CountryContext'
+import { CountryFilterProps } from './CountryFilter'
+import { CountryPicker } from './CountryPicker'
+import { DEFAULT_THEME, Theme, ThemeProvider } from './CountryTheme'
 import { FlagButtonProps } from './FlagButton'
 import {
-  TranslationLanguageCode,
-  CountryCode,
   Country,
+  CountryCode,
   Region,
   Subregion,
+  TranslationLanguageCode,
 } from './types'
-import { CountryProvider, DEFAULT_COUNTRY_CONTEXT } from './CountryContext'
-import { ThemeProvider, DEFAULT_THEME, Theme } from './CountryTheme'
-import { CountryFilterProps } from './CountryFilter'
-import { StyleProp, ViewStyle, ModalProps, FlatListProps } from 'react-native'
-import { CountryPicker } from './CountryPicker'
 
 interface Props {
   allowFontScaling?: boolean
@@ -49,32 +49,30 @@ interface Props {
   onClose?(): void
 }
 
-const Main = ({ theme, translation, ...props }: Props) => {
+const Main = ({ theme, translation, withEmoji = true, onSelect, ...props }: Props) => {
   return (
     <ThemeProvider theme={{ ...DEFAULT_THEME, ...theme }}>
       <CountryProvider value={{ ...DEFAULT_COUNTRY_CONTEXT, translation }}>
-        <CountryPicker {...props} />
+        <CountryPicker withEmoji={withEmoji} onSelect={onSelect} {...props} />
       </CountryProvider>
     </ThemeProvider>
   )
 }
 
-Main.defaultProps = {
-  onSelect: () => {},
-  withEmoji: true,
-}
+
 
 export default Main
-export {
-  getCountriesAsync as getAllCountries,
-  getCountryCallingCodeAsync as getCallingCode,
-} from './CountryService'
-export { CountryModal } from './CountryModal'
-export { DARK_THEME, DEFAULT_THEME } from './CountryTheme'
 export { CountryFilter } from './CountryFilter'
 export { CountryList } from './CountryList'
-export { FlagButton } from './FlagButton'
-export { Flag } from './Flag'
-export { HeaderModal } from './HeaderModal'
+export { CountryModal } from './CountryModal'
 export { CountryModalProvider } from './CountryModalProvider'
+export {
+  getCountriesAsync as getAllCountries,
+  getCountryCallingCodeAsync as getCallingCode
+} from './CountryService'
+export { DARK_THEME, DEFAULT_THEME } from './CountryTheme'
+export { Flag } from './Flag'
+export { FlagButton } from './FlagButton'
+export { HeaderModal } from './HeaderModal'
 export * from './types'
+

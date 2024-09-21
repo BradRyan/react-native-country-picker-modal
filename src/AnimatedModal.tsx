@@ -47,6 +47,3 @@ export const AnimatedModal = ({ children, visible }: Props) => {
   )
 }
 
-AnimatedModal.defaultProps = {
-  visible: false,
-}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextInput, StyleSheet, TextInputProps, Platform } from 'react-native'
+import { Platform, StyleSheet, TextInput, TextInputProps } from 'react-native'
 import { useTheme } from './CountryTheme'
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 export type CountryFilterProps = TextInputProps
 
-export const CountryFilter = (props: CountryFilterProps) => {
+export const CountryFilter = ({placeholder = 'Enter country name', ...props}: CountryFilterProps) => {
   const {
     filterPlaceholderTextColor,
     fontFamily,
@@ -30,6 +30,7 @@ export const CountryFilter = (props: CountryFilterProps) => {
       testID='text-input-country-filter'
       autoCorrect={false}
       placeholderTextColor={filterPlaceholderTextColor}
+      placeholder={placeholder}
       style={[
         styles.input,
         { fontFamily, fontSize, color: onBackgroundTextColor },
@@ -37,9 +38,4 @@ export const CountryFilter = (props: CountryFilterProps) => {
       {...props}
     />
   )
-}
-
-CountryFilter.defaultProps = {
-  autoFocus: false,
-  placeholder: 'Enter country name',
 }

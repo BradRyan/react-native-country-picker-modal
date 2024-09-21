@@ -1,19 +1,19 @@
-import React, { ReactNode, useState, useEffect } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import {
-  ModalProps,
   FlatListProps,
-  StyleProp,
-  ViewStyle,
   ImageSourcePropType,
   ImageStyle,
+  ModalProps,
+  StyleProp,
+  ViewStyle,
 } from 'react-native'
+import { useContext } from './CountryContext'
+import { CountryFilter, CountryFilterProps } from './CountryFilter'
+import { CountryList } from './CountryList'
 import { CountryModal } from './CountryModal'
+import { FlagButton } from './FlagButton'
 import { HeaderModal } from './HeaderModal'
 import { Country, CountryCode, FlagType, Region, Subregion } from './types'
-import { CountryFilter, CountryFilterProps } from './CountryFilter'
-import { FlagButton } from './FlagButton'
-import { useContext } from './CountryContext'
-import { CountryList } from './CountryList'
 
 interface State {
   visible: boolean
@@ -89,7 +89,7 @@ interface CountryPickerProps {
 
 export const CountryPicker = (props: CountryPickerProps) => {
   const {
-    allowFontScaling,
+    allowFontScaling = true,
     countryCode,
     region,
     subregion,
@@ -100,18 +100,18 @@ export const CountryPicker = (props: CountryPickerProps) => {
     modalProps,
     flatListProps,
     onSelect,
-    withEmoji,
+    withEmoji = true,
     withFilter,
     withCloseButton,
     withCountryNameButton,
-    withCallingCodeButton,
+    withCallingCodeButton ,
     withCurrencyButton,
     containerButtonStyle,
     withAlphaFilter,
     withCallingCode,
     withCurrency,
-    withFlag,
-    withModal,
+    withFlag = true,
+    withModal = true,
     disableNativeModal,
     withFlagButton,
     onClose: handleClose,
@@ -120,7 +120,7 @@ export const CountryPicker = (props: CountryPickerProps) => {
     closeButtonStyle,
     closeButtonImageStyle,
     excludeCountries,
-    placeholder,
+    placeholder = "Select Country",
     preferredCountries,
   } = props
   const [state, setState] = useState<State>({
@@ -244,10 +244,3 @@ export const CountryPicker = (props: CountryPickerProps) => {
   )
 }
 
-CountryPicker.defaultProps = {
-  withModal: true,
-  withAlphaFilter: false,
-  withCallingCode: false,
-  placeholder: 'Select Country',
-  allowFontScaling: true,
-}
